@@ -1,3 +1,13 @@
+function hotTemperature(data) {
+  return data.list[0].temp.day >= 5.00;
+  //const hotTemp = data.list[0].filter(data => data.list[0].temp> 10);
+}
+
+function fromCelsiusToKelvin(data) {
+  const mapK = (data.list[0].temp.day)+273.15;
+  return mapK;
+}
+
 // Fonction appelée lors du click du bouton
 function start() {
   // Création de l'objet apiWeather
@@ -28,7 +38,6 @@ function start() {
       console.error(error);
     });*/
 
-  //const hotTemperature = data.filter(data => data.temp > 10);
 
   //Permet d'afficher 4 jours de prévisions météorologiques
   apiWeather
@@ -39,11 +48,14 @@ function start() {
 
       // On récupère l'information principale
       var i = 0;
-      //4 pour Aujourd'hui et les 3 jours d'après
+        //4 pour Aujourd'hui et les 3 jours d'après
       for (i = 0; i < 4; i++) {
         const main = data.list[i].weather[0].main;
         const description = data.list[i].weather[0].description;
+        //const temp = data.filter(hotTemperature).list[i].temp.day;
+
         const temp = data.list[i].temp.day;
+        //const temp = data.list[i].temp.day.fromCelsiusToKelvin(data);
         const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon)
 
         document.getElementById('today-forecast-main-'+i).innerHTML = main;
