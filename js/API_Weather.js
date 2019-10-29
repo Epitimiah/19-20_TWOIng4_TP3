@@ -10,13 +10,23 @@ const API_URL_ICON = "http://openweathermap.org/img/wn/";
 
 
 class API_WEATHER {
-  constructor(city) {
+  constructor() {
     // Si la ville n'est pas définit alors la ville par défault est Paris
     /*if(city === undefined){
       city = "paris";
     }*/
-    //La ville est rentrée par l'utilisateur 
-    var city = document.getElementById("city-input").value;
+
+    //La ville est rentrée par l'utilisateur
+    var city;
+    var input = document.getElementById("city-input").value;
+
+    if(input == ""){
+      city = "paris";
+    }
+    else{
+      city = input;
+    }
+     
     this.city = city;
   }
 
@@ -30,7 +40,7 @@ class API_WEATHER {
     })
   }*/
 
-  //Retourne trois promises
+  //Retourne quatres prévisions
   getThreeDayForecast() {
     return axios
       .get(`${API_URL}?q=${this.city}&units=metric&cnt=4&appid=${API_KEY}`, {

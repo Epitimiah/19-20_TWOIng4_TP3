@@ -28,6 +28,9 @@ function start() {
       console.error(error);
     });*/
 
+  //const hotTemperature = data.filter(data => data.temp > 10);
+
+  //Permet d'afficher 4 jours de prévisions météorologiques
   apiWeather
     .getThreeDayForecast()
     .then(function (response) {
@@ -36,13 +39,13 @@ function start() {
 
       // On récupère l'information principale
       var i = 0;
+      //4 pour Aujourd'hui et les 3 jours d'après
       for (i = 0; i < 4; i++) {
         const main = data.list[i].weather[0].main;
         const description = data.list[i].weather[0].description;
         const temp = data.list[i].temp.day;
         const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon)
 
-        // Modifier le DOM
         document.getElementById('today-forecast-main-'+i).innerHTML = main;
         document.getElementById('today-forecast-more-info-'+i).innerHTML = description;
         document.getElementById('icon-weather-container-'+i).innerHTML = icon;
