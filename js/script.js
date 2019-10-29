@@ -1,11 +1,5 @@
-function hotTemperature(data) {
-  return data.list[0].temp.day >= 5.00;
-  //const hotTemp = data.list[0].filter(data => data.list[0].temp> 10);
-}
-
-function fromCelsiusToKelvin(data) {
-  const mapK = (data.list[0].temp.day)+273.15;
-  return mapK;
+function fromCelsiusToKelvin(val) {
+  return val = val+273.15;
 }
 
 // Fonction appelée lors du click du bouton
@@ -52,11 +46,19 @@ function start() {
       for (i = 0; i < 4; i++) {
         const main = data.list[i].weather[0].main;
         const description = data.list[i].weather[0].description;
-        //const temp = data.filter(hotTemperature).list[i].temp.day;
-
         const temp = data.list[i].temp.day;
-        //const temp = data.list[i].temp.day.fromCelsiusToKelvin(data);
-        const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon)
+        const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon);
+
+        //Filter, Map, Sort       
+        /*const hotTemperature = data.list[i].filter(data => data.list[i].temp> 10);
+        console.log(hotTemperature);
+        //const hotTemperature = data.filter(hotTemperature).list[i].temp.day;
+
+        const mapK = (data.list[i].temp.day).map(fromCelsiusToKelvin);
+        console.log(mapK);
+        
+        const sorted = (data.list[i].temp.day).sort();
+        console.log(sorted);*/
 
         document.getElementById('today-forecast-main-'+i).innerHTML = main;
         document.getElementById('today-forecast-more-info-'+i).innerHTML = description;
